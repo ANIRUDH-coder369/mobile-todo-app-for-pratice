@@ -23,6 +23,15 @@ exports.readTask = async (req, res) => {
         res.status(500).json({ message: "unable to read task" })
     }
 }
+exports.readComplete = async (req, res) => {
+    try {
+        const result = await Task.find({ complete: true })
+        res.status(200).json({ message: "task read complete success", result })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "unable to read task" })
+    }
+}
 
 exports.updateTask = async (req, res) => {
     try {
